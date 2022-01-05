@@ -15,9 +15,9 @@ train:
     lamb: 0
 
 data:
-    vocab_path: /data/private/datasets/pubtabnet/annotations/vocab.txt
-    training_file_path: /data/private/datasets/pubtabnet/annotations/train.json
-    validation_file_path: /data/private/datasets/pubtabnet/annotations/val.json
+    vocab_path: /content/pubtabnet/annotations/vocab.txt
+    training_file_path: /content/pubtabnet/annotations/train.json
+    validation_file_path: /content/pubtabnet/annotations/val.json
     patch_length: 8
 
 model:

@@ -11,19 +11,19 @@ def preprocess_json(dataset_dir, output_dir):
     with open(json_path, 'r', encoding='utf-8') as f:
         for line in tqdm(f, total=509892):
             data = json.loads(line)
-            
+
             data_new = dict()
             image_path = os.path.join(dataset_dir, data['split'], data['filename'])
             image = Image.open(image_path)
             data_new['image_path'] = image_path
-            data_new['image_size'] =  image.size
+            data_new['image_size'] = image.size
             # start text
-            nd = len([x for x in data['html']['structure']['tokens'] if x == '</td>']) 
+            nd = len([x for x in data['html']['structure']['tokens'] if x == '</td>'])
             nc = len(data['html']['cells'])
             alert_msg = "The number of td (%d) is note equal to the number of cells (%d)." % (nd, nc)
             assert nd == nc, alert_msg
 
-            data_new['text'] = ['<START>'] 
+            data_new['text'] = ['<START>']
             cnt_cell = 0
             for struct_tok in data['html']['structure']['tokens']:
                 if struct_tok == '</td>':
@@ -68,7 +68,7 @@ def generate_vocab(dataset_dir, output_dir):
 
 
 if __name__ == '__main__':
-    dataset_dir = '/data/private/datasets/pubtabnet'
-    output_dir = '/data/private/datasets/pubtabnet/annotations'
+    dataset_dir = '/content/pubtabnet'
+    output_dir = '/content/pubtabnet/annotations'
     generate_vocab(dataset_dir, output_dir)
     preprocess_json(dataset_dir, output_dir)
