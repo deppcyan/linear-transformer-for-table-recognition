@@ -32,7 +32,7 @@ global_step = 0
 @hydra.main(config_path='configs/', config_name='linear_transformer')
 def main(hps):
     """Assume Single Node Multi GPUs Training Only"""
-    assert torch.cuda.is_available(), "CPU training is not allowed."
+    # assert torch.cuda.is_available(), "CPU training is not allowed."
     assert OmegaConf.select(hps, "model_dir") != ".hydra", "Please specify model_dir."
     print(OmegaConf.to_yaml(hps))
   
