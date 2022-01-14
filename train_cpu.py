@@ -36,11 +36,11 @@ def run(hps):
 
     train_dataset = ImageTextLoader(hps.data.training_file_path, hps.data)
     collate_fn = ImageTextCollate()
-    train_loader = DataLoader(train_dataset, num_workers=4, shuffle=False, pin_memory=True,
+    train_loader = DataLoader(train_dataset, num_workers=1, shuffle=True, pin_memory=False,
                               collate_fn=collate_fn)
 
     eval_dataset = ImageTextLoader(hps.data.validation_file_path, hps.data)
-    eval_loader = DataLoader(eval_dataset, num_workers=0, shuffle=False, pin_memory=False,
+    eval_loader = DataLoader(eval_dataset, num_workers=1, shuffle=True, pin_memory=False,
                              collate_fn=collate_fn)
 
     model = TableRecognizer(
